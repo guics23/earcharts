@@ -1,0 +1,15 @@
+{
+  "name": "earcharts",
+  "version": "0.1.0",
+  "description": "EarCharts: render scale-degree melodies and chords from plain text to a printable HTML page",
+  "type": "module",
+  "bin": {
+    "earcharts": "./render.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
