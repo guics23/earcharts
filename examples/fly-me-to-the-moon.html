@@ -7,12 +7,12 @@
 <style>
 @page { size: A4; margin: 14mm; }
 * { box-sizing: border-box; }
-:root { --bg: #fff; --ink: #222; --muted: #444; --chord-ink: #8a8a8a; color-scheme: light; }
+:root { --bg: #fff; --ink: #222; --muted: #444; --chord-ink: #8a8a8a; --accent: #d9480f; color-scheme: light; }
 @media screen and (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --bg: #141414; --ink: #e6e6e6; --muted: #b3b3b3; --chord-ink: #8c8c8c; color-scheme: dark; }
+  :root:not([data-theme="light"]) { --bg: #141414; --ink: #e6e6e6; --muted: #b3b3b3; --chord-ink: #8c8c8c; --accent: #ff8a4c; color-scheme: dark; }
 }
 @media screen {
-  :root[data-theme="dark"] { --bg: #141414; --ink: #e6e6e6; --muted: #b3b3b3; --chord-ink: #8c8c8c; color-scheme: dark; }
+  :root[data-theme="dark"] { --bg: #141414; --ink: #e6e6e6; --muted: #b3b3b3; --chord-ink: #8c8c8c; --accent: #ff8a4c; color-scheme: dark; }
 }
 html { background: var(--bg); color: var(--ink); }
 body { margin: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
@@ -31,6 +31,16 @@ h1 { font-size: 30px; font-weight: 700; margin: 0; }
 .theme-toggle { position: fixed; top: 12px; right: 12px; width: 34px; height: 34px; border: 1px solid var(--muted); border-radius: 50%; background: var(--bg); color: var(--ink); font-size: 17px; line-height: 1; cursor: pointer; opacity: 0.55; }
 .theme-toggle:hover, .theme-toggle:focus-visible { opacity: 1; }
 @media print { main { max-width: none; padding: 0; } .theme-toggle { display: none; } }
+
+.player { position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 14px; max-width: calc(100% - 32px); padding: 8px 16px; border: 1px solid var(--muted); border-radius: 22px; background: var(--bg); color: var(--ink); font-size: 14px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); }
+.player label { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+.player select, .player input[type="number"] { font: inherit; color: inherit; background: var(--bg); border: 1px solid var(--muted); border-radius: 4px; padding: 2px 4px; }
+.player input[type="number"] { width: 4.5em; }
+.player .play { width: 30px; height: 30px; border: 1px solid var(--muted); border-radius: 50%; background: var(--bg); color: var(--ink); font-size: 13px; line-height: 1; cursor: pointer; }
+.digit[data-i] { cursor: pointer; }
+.digit.playing { fill: var(--accent); }
+main { padding-bottom: 96px; }
+@media print { .player { display: none; } main { padding-bottom: 0; } }
 </style>
 <script>try { var t = localStorage.getItem('earcharts-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
@@ -41,9 +51,17 @@ h1 { font-size: 30px; font-weight: 700; margin: 0; }
 <h1>Fly Me to the Moon</h1>
 <p class="author">Bart Howard</p>
 </header>
-<div class="line"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 126" width="1000" height="126" role="img" aria-label="Line 1"><g stroke="currentColor" stroke-linecap="round"><line x1="12" y1="8" x2="12" y2="120" stroke-width="1.2"/><line x1="256" y1="8" x2="256" y2="120" stroke-width="1.2"/><line x1="500" y1="8" x2="500" y2="120" stroke-width="1.2"/><line x1="744" y1="8" x2="744" y2="120" stroke-width="1.2"/><line x1="988" y1="8" x2="988" y2="120" stroke-width="1.2"/><circle cx="286" cy="74" r="2.2" fill="currentColor" stroke="none"/><circle cx="530" cy="59" r="2.2" fill="currentColor" stroke="none"/><line x1="32.3" y1="35" x2="32.3" y2="22" stroke-width="1.5"/><line x1="79.8" y1="40" x2="79.8" y2="27" stroke-width="1.5"/><line x1="127.4" y1="45" x2="127.4" y2="32" stroke-width="1.5"/><line x1="127.4" y1="32" x2="134.4" y2="32" stroke-width="1.5"/><line x1="167" y1="50" x2="167" y2="37" stroke-width="1.5"/><line x1="214.6" y1="55" x2="214.6" y2="42" stroke-width="1.5"/><line x1="214.6" y1="42" x2="221.6" y2="42" stroke-width="1.5"/><line x1="276.3" y1="55" x2="276.3" y2="42" stroke-width="1.5"/><line x1="344.5" y1="50" x2="344.5" y2="37" stroke-width="1.5"/><line x1="344.5" y1="37" x2="351.5" y2="37" stroke-width="1.5"/><line x1="388.5" y1="45" x2="388.5" y2="32" stroke-width="1.5"/><line x1="442.2" y1="35" x2="442.2" y2="22" stroke-width="1.5"/><line x1="520.3" y1="40" x2="520.3" y2="27" stroke-width="1.5"/><line x1="579.5" y1="45" x2="579.5" y2="32" stroke-width="1.5"/><line x1="579.5" y1="32" x2="586.5" y2="32" stroke-width="1.5"/><line x1="618.3" y1="50" x2="618.3" y2="37" stroke-width="1.5"/><line x1="664.6" y1="55" x2="664.6" y2="42" stroke-width="1.5"/><line x1="703.4" y1="60" x2="703.4" y2="42" stroke-width="1.5"/><rect x="663.9" y="42" width="40.3" height="3" fill="currentColor" stroke="none"/><line x1="764.3" y1="60" x2="764.3" y2="47" stroke-width="1.5"/><line x1="819.8" y1="60" x2="819.8" y2="47" stroke-width="1.5"/><line x1="875.3" y1="60" x2="875.3" y2="47" stroke-width="1.5"/><line x1="930.8" y1="60" x2="930.8" y2="47" stroke-width="1.5"/><path d="M217.6 81 Q245.4 94.6 273.3 81" fill="none" stroke-width="1.4"/><path d="M706.4 86 Q733.8 99.5 761.3 86" fill="none" stroke-width="1.4"/></g><g fill="currentColor"><text x="32.3" y="56" class="digit" text-anchor="middle">1</text><text x="79.8" y="61" class="digit" text-anchor="middle">7</text><text x="127.4" y="66" class="digit" text-anchor="middle">6</text><text x="167" y="71" class="digit" text-anchor="middle">5</text><text x="214.6" y="76" class="digit" text-anchor="middle">4</text><text x="276.3" y="76" class="digit" text-anchor="middle">4</text><text x="344.5" y="71" class="digit" text-anchor="middle">5</text><text x="388.5" y="66" class="digit" text-anchor="middle">6</text><text x="442.2" y="56" class="digit" text-anchor="middle">1</text><text x="520.3" y="61" class="digit" text-anchor="middle">7</text><text x="579.5" y="66" class="digit" text-anchor="middle">6</text><text x="618.3" y="71" class="digit" text-anchor="middle">5</text><text x="664.6" y="76" class="digit" text-anchor="middle">4</text><text x="703.4" y="81" class="digit" text-anchor="middle">3</text><text x="764.3" y="81" class="digit" text-anchor="middle">3</text><text x="26" y="114" class="chord" fill="#8a8a8a">6-</text><text x="270" y="114" class="chord" fill="#8a8a8a">2-</text><text x="514" y="114" class="chord" fill="#8a8a8a">5D</text><text x="758" y="114" class="chord" fill="#8a8a8a">1</text></g></svg></div>
-<div class="line"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 126" width="1000" height="126" role="img" aria-label="Line 2"><g stroke="currentColor" stroke-linecap="round"><line x1="12" y1="8" x2="12" y2="120" stroke-width="1.2"/><line x1="256" y1="8" x2="256" y2="120" stroke-width="1.2"/><line x1="500" y1="8" x2="500" y2="120" stroke-width="1.2"/><line x1="744" y1="8" x2="744" y2="120" stroke-width="1.2"/><line x1="988" y1="8" x2="988" y2="120" stroke-width="1.2"/><circle cx="42" cy="54" r="2.2" fill="currentColor" stroke="none"/><circle cx="330" cy="69" r="2.2" fill="currentColor" stroke="none"/><circle cx="540" cy="59" r="2.2" fill="currentColor" stroke="none"/><line x1="32.3" y1="35" x2="32.3" y2="22" stroke-width="1.5"/><line x1="91.5" y1="40" x2="91.5" y2="27" stroke-width="1.5"/><line x1="91.5" y1="27" x2="98.5" y2="27" stroke-width="1.5"/><line x1="130.3" y1="45" x2="130.3" y2="32" stroke-width="1.5"/><line x1="176.6" y1="50" x2="176.6" y2="37" stroke-width="1.5"/><line x1="215.4" y1="55" x2="215.4" y2="37" stroke-width="1.5"/><rect x="175.9" y="37" width="40.3" height="3" fill="currentColor" stroke="none"/><line x1="276.3" y1="55" x2="276.3" y2="42" stroke-width="1.5"/><line x1="276.3" y1="42" x2="283.3" y2="42" stroke-width="1.5"/><line x1="320.3" y1="50" x2="320.3" y2="37" stroke-width="1.5"/><line x1="388.5" y1="45" x2="388.5" y2="32" stroke-width="1.5"/><line x1="442.2" y1="35" x2="442.2" y2="22" stroke-width="1.5"/><line x1="530.3" y1="40" x2="530.3" y2="27" stroke-width="1.5"/><line x1="586.6" y1="45" x2="586.6" y2="32" stroke-width="1.5"/><line x1="586.6" y1="32" x2="593.6" y2="32" stroke-width="1.5"/><line x1="623.8" y1="50" x2="623.8" y2="37" stroke-width="1.5"/><line x1="667.9" y1="55" x2="667.9" y2="42" stroke-width="1.5"/><line x1="705.1" y1="60" x2="705.1" y2="42" stroke-width="1.5"/><rect x="667.1" y="42" width="38.7" height="3" fill="currentColor" stroke="none"/><line x1="764.3" y1="60" x2="764.3" y2="47" stroke-width="1.5"/><line x1="819.8" y1="60" x2="819.8" y2="47" stroke-width="1.5"/><line x1="875.3" y1="60" x2="875.3" y2="47" stroke-width="1.5"/><line x1="930.8" y1="60" x2="930.8" y2="47" stroke-width="1.5"/><path d="M218.4 81 Q245.8 94.5 273.3 81" fill="none" stroke-width="1.4"/><path d="M708.1 86 Q734.7 99.3 761.3 86" fill="none" stroke-width="1.4"/></g><g fill="currentColor"><text x="32.3" y="56" class="digit" text-anchor="middle">6</text><text x="91.5" y="61" class="digit" text-anchor="middle">5</text><text x="130.3" y="66" class="digit" text-anchor="middle">4</text><text x="176.6" y="71" class="digit" text-anchor="middle">3</text><text x="215.4" y="76" class="digit" text-anchor="middle">2</text><text x="276.3" y="76" class="digit" text-anchor="middle">2</text><text x="320.3" y="71" class="digit" text-anchor="middle">3</text><text x="388.5" y="66" class="digit" text-anchor="middle">4</text><text x="442.2" y="56" class="digit" text-anchor="middle">6</text><text x="524" y="57" class="acc" text-anchor="end">♯</text><text x="530.3" y="61" class="digit" text-anchor="middle">5</text><text x="586.6" y="66" class="digit" text-anchor="middle">4</text><text x="623.8" y="71" class="digit" text-anchor="middle">3</text><text x="667.9" y="76" class="digit" text-anchor="middle">2</text><text x="705.1" y="81" class="digit" text-anchor="middle">1</text><text x="764.3" y="81" class="digit" text-anchor="middle">1</text><text x="26" y="114" class="chord" fill="#8a8a8a">4</text><text x="270" y="114" class="chord" fill="#8a8a8a">7-<tspan class="chord-ext" dy="-7">♭5</tspan></text><text x="514" y="114" class="chord" fill="#8a8a8a">3D</text><text x="758" y="114" class="chord" fill="#8a8a8a">6-</text></g></svg></div>
+<div class="line"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 126" width="1000" height="126" role="img" aria-label="Line 1"><g stroke="currentColor" stroke-linecap="round"><line x1="12" y1="8" x2="12" y2="120" stroke-width="1.2"/><line x1="256" y1="8" x2="256" y2="120" stroke-width="1.2"/><line x1="500" y1="8" x2="500" y2="120" stroke-width="1.2"/><line x1="744" y1="8" x2="744" y2="120" stroke-width="1.2"/><line x1="988" y1="8" x2="988" y2="120" stroke-width="1.2"/><circle cx="286" cy="74" r="2.2" fill="currentColor" stroke="none"/><circle cx="530" cy="59" r="2.2" fill="currentColor" stroke="none"/><line x1="32.3" y1="35" x2="32.3" y2="22" stroke-width="1.5"/><line x1="79.8" y1="40" x2="79.8" y2="27" stroke-width="1.5"/><line x1="127.4" y1="45" x2="127.4" y2="32" stroke-width="1.5"/><line x1="127.4" y1="32" x2="134.4" y2="32" stroke-width="1.5"/><line x1="167" y1="50" x2="167" y2="37" stroke-width="1.5"/><line x1="214.6" y1="55" x2="214.6" y2="42" stroke-width="1.5"/><line x1="214.6" y1="42" x2="221.6" y2="42" stroke-width="1.5"/><line x1="276.3" y1="55" x2="276.3" y2="42" stroke-width="1.5"/><line x1="344.5" y1="50" x2="344.5" y2="37" stroke-width="1.5"/><line x1="344.5" y1="37" x2="351.5" y2="37" stroke-width="1.5"/><line x1="388.5" y1="45" x2="388.5" y2="32" stroke-width="1.5"/><line x1="442.2" y1="35" x2="442.2" y2="22" stroke-width="1.5"/><line x1="520.3" y1="40" x2="520.3" y2="27" stroke-width="1.5"/><line x1="579.5" y1="45" x2="579.5" y2="32" stroke-width="1.5"/><line x1="579.5" y1="32" x2="586.5" y2="32" stroke-width="1.5"/><line x1="618.3" y1="50" x2="618.3" y2="37" stroke-width="1.5"/><line x1="664.6" y1="55" x2="664.6" y2="42" stroke-width="1.5"/><line x1="703.4" y1="60" x2="703.4" y2="42" stroke-width="1.5"/><rect x="663.9" y="42" width="40.3" height="3" fill="currentColor" stroke="none"/><line x1="764.3" y1="60" x2="764.3" y2="47" stroke-width="1.5"/><line x1="819.8" y1="60" x2="819.8" y2="47" stroke-width="1.5"/><line x1="875.3" y1="60" x2="875.3" y2="47" stroke-width="1.5"/><line x1="930.8" y1="60" x2="930.8" y2="47" stroke-width="1.5"/><path d="M217.6 81 Q245.4 94.6 273.3 81" fill="none" stroke-width="1.4"/><path d="M706.4 86 Q733.8 99.5 761.3 86" fill="none" stroke-width="1.4"/></g><g fill="currentColor"><text x="32.3" y="56" class="digit" text-anchor="middle" data-i="0">1</text><text x="79.8" y="61" class="digit" text-anchor="middle" data-i="1">7</text><text x="127.4" y="66" class="digit" text-anchor="middle" data-i="2">6</text><text x="167" y="71" class="digit" text-anchor="middle" data-i="3">5</text><text x="214.6" y="76" class="digit" text-anchor="middle" data-i="4">4</text><text x="276.3" y="76" class="digit" text-anchor="middle" data-i="5">4</text><text x="344.5" y="71" class="digit" text-anchor="middle" data-i="6">5</text><text x="388.5" y="66" class="digit" text-anchor="middle" data-i="7">6</text><text x="442.2" y="56" class="digit" text-anchor="middle" data-i="8">1</text><text x="520.3" y="61" class="digit" text-anchor="middle" data-i="9">7</text><text x="579.5" y="66" class="digit" text-anchor="middle" data-i="10">6</text><text x="618.3" y="71" class="digit" text-anchor="middle" data-i="11">5</text><text x="664.6" y="76" class="digit" text-anchor="middle" data-i="12">4</text><text x="703.4" y="81" class="digit" text-anchor="middle" data-i="13">3</text><text x="764.3" y="81" class="digit" text-anchor="middle" data-i="14">3</text><text x="26" y="114" class="chord" fill="#8a8a8a">6-</text><text x="270" y="114" class="chord" fill="#8a8a8a">2-</text><text x="514" y="114" class="chord" fill="#8a8a8a">5D</text><text x="758" y="114" class="chord" fill="#8a8a8a">1</text></g></svg></div>
+<div class="line"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 126" width="1000" height="126" role="img" aria-label="Line 2"><g stroke="currentColor" stroke-linecap="round"><line x1="12" y1="8" x2="12" y2="120" stroke-width="1.2"/><line x1="256" y1="8" x2="256" y2="120" stroke-width="1.2"/><line x1="500" y1="8" x2="500" y2="120" stroke-width="1.2"/><line x1="744" y1="8" x2="744" y2="120" stroke-width="1.2"/><line x1="988" y1="8" x2="988" y2="120" stroke-width="1.2"/><circle cx="42" cy="54" r="2.2" fill="currentColor" stroke="none"/><circle cx="330" cy="69" r="2.2" fill="currentColor" stroke="none"/><circle cx="540" cy="59" r="2.2" fill="currentColor" stroke="none"/><line x1="32.3" y1="35" x2="32.3" y2="22" stroke-width="1.5"/><line x1="91.5" y1="40" x2="91.5" y2="27" stroke-width="1.5"/><line x1="91.5" y1="27" x2="98.5" y2="27" stroke-width="1.5"/><line x1="130.3" y1="45" x2="130.3" y2="32" stroke-width="1.5"/><line x1="176.6" y1="50" x2="176.6" y2="37" stroke-width="1.5"/><line x1="215.4" y1="55" x2="215.4" y2="37" stroke-width="1.5"/><rect x="175.9" y="37" width="40.3" height="3" fill="currentColor" stroke="none"/><line x1="276.3" y1="55" x2="276.3" y2="42" stroke-width="1.5"/><line x1="276.3" y1="42" x2="283.3" y2="42" stroke-width="1.5"/><line x1="320.3" y1="50" x2="320.3" y2="37" stroke-width="1.5"/><line x1="388.5" y1="45" x2="388.5" y2="32" stroke-width="1.5"/><line x1="442.2" y1="35" x2="442.2" y2="22" stroke-width="1.5"/><line x1="530.3" y1="40" x2="530.3" y2="27" stroke-width="1.5"/><line x1="586.6" y1="45" x2="586.6" y2="32" stroke-width="1.5"/><line x1="586.6" y1="32" x2="593.6" y2="32" stroke-width="1.5"/><line x1="623.8" y1="50" x2="623.8" y2="37" stroke-width="1.5"/><line x1="667.9" y1="55" x2="667.9" y2="42" stroke-width="1.5"/><line x1="705.1" y1="60" x2="705.1" y2="42" stroke-width="1.5"/><rect x="667.1" y="42" width="38.7" height="3" fill="currentColor" stroke="none"/><line x1="764.3" y1="60" x2="764.3" y2="47" stroke-width="1.5"/><line x1="819.8" y1="60" x2="819.8" y2="47" stroke-width="1.5"/><line x1="875.3" y1="60" x2="875.3" y2="47" stroke-width="1.5"/><line x1="930.8" y1="60" x2="930.8" y2="47" stroke-width="1.5"/><path d="M218.4 81 Q245.8 94.5 273.3 81" fill="none" stroke-width="1.4"/><path d="M708.1 86 Q734.7 99.3 761.3 86" fill="none" stroke-width="1.4"/></g><g fill="currentColor"><text x="32.3" y="56" class="digit" text-anchor="middle" data-i="15">6</text><text x="91.5" y="61" class="digit" text-anchor="middle" data-i="16">5</text><text x="130.3" y="66" class="digit" text-anchor="middle" data-i="17">4</text><text x="176.6" y="71" class="digit" text-anchor="middle" data-i="18">3</text><text x="215.4" y="76" class="digit" text-anchor="middle" data-i="19">2</text><text x="276.3" y="76" class="digit" text-anchor="middle" data-i="20">2</text><text x="320.3" y="71" class="digit" text-anchor="middle" data-i="21">3</text><text x="388.5" y="66" class="digit" text-anchor="middle" data-i="22">4</text><text x="442.2" y="56" class="digit" text-anchor="middle" data-i="23">6</text><text x="524" y="57" class="acc" text-anchor="end">♯</text><text x="530.3" y="61" class="digit" text-anchor="middle" data-i="24">5</text><text x="586.6" y="66" class="digit" text-anchor="middle" data-i="25">4</text><text x="623.8" y="71" class="digit" text-anchor="middle" data-i="26">3</text><text x="667.9" y="76" class="digit" text-anchor="middle" data-i="27">2</text><text x="705.1" y="81" class="digit" text-anchor="middle" data-i="28">1</text><text x="764.3" y="81" class="digit" text-anchor="middle" data-i="29">1</text><text x="26" y="114" class="chord" fill="#8a8a8a">4</text><text x="270" y="114" class="chord" fill="#8a8a8a">7-<tspan class="chord-ext" dy="-7">♭5</tspan></text><text x="514" y="114" class="chord" fill="#8a8a8a">3D</text><text x="758" y="114" class="chord" fill="#8a8a8a">6-</text></g></svg></div>
 </main>
+<div class="player" role="group" aria-label="Player">
+<button class="play" type="button" aria-label="Play" title="Play (space). Click a note to play from there.">▶</button>
+<label>1 = <select name="key" aria-label="Key"><option value="0" selected>C</option><option value="1">D♭</option><option value="2">D</option><option value="3">E♭</option><option value="4">E</option><option value="5">F</option><option value="6">F♯</option><option value="7">G</option><option value="8">A♭</option><option value="9">A</option><option value="10">B♭</option><option value="11">B</option></select></label>
+<select name="octave" aria-label="Octave"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option></select>
+<label><input name="tempo" type="number" min="30" max="300" step="5" value="100" aria-label="Tempo"> bpm</label>
+<label><input name="melody" type="checkbox" checked> Melody</label>
+<label><input name="chords" type="checkbox" checked> Chords</label>
+</div>
 <script>
 document.querySelector('.theme-toggle').addEventListener('click', function () {
   var root = document.documentElement;
@@ -51,5 +69,164 @@ document.querySelector('.theme-toggle').addEventListener('click', function () {
   root.dataset.theme = dark ? 'light' : 'dark';
   try { localStorage.setItem('earcharts-theme', root.dataset.theme); } catch (e) {}
 });</script>
+<script>(function player(score, defaults) {
+  const bar = document.querySelector('.player');
+  const btn = bar.querySelector('.play');
+  const keySel = bar.querySelector('[name=key]');
+  const octSel = bar.querySelector('[name=octave]');
+  const tempoIn = bar.querySelector('[name=tempo]');
+  const melodyBox = bar.querySelector('[name=melody]'); // melody and chords boxes only exist with chords
+  const chordsBox = bar.querySelector('[name=chords]');
+  const digits = [];
+  document.querySelectorAll('.digit[data-i]').forEach((el) => (digits[+el.dataset.i] = el));
+
+  // The viewer's last choice is remembered per page, unless the page has
+  // since been re-rendered with different defaults.
+  const storeKey = 'earcharts-player:' + location.pathname;
+  const same = (a, b) => a && b && a.root === b.root && a.tempo === b.tempo;
+  try {
+    const saved = JSON.parse(localStorage.getItem(storeKey));
+    if (saved && same(saved.defaults, defaults)) {
+      keySel.value = saved.root % 12;
+      octSel.value = Math.floor(saved.root / 12) - 1;
+      tempoIn.value = saved.tempo;
+      if (chordsBox) chordsBox.checked = saved.chords;
+      if (melodyBox) melodyBox.checked = saved.melody !== false;
+    }
+  } catch (e) {}
+  const settings = () => ({
+    root: 12 * (+octSel.value + 1) + +keySel.value,
+    tempo: Math.min(300, Math.max(30, +tempoIn.value || defaults.tempo)),
+    chords: chordsBox ? chordsBox.checked : false,
+    melody: melodyBox ? melodyBox.checked : true,
+  });
+  const save = () => {
+    try {
+      localStorage.setItem(storeKey, JSON.stringify({ ...settings(), defaults }));
+    } catch (e) {}
+  };
+
+  let ctx = null;
+  let run = null; // { master, t0, from, spb, frame, lit }
+
+  const freq = (midi) => 440 * Math.pow(2, (midi - 69) / 12);
+
+  function voice(out, midi, t0, t1, type, level) {
+    const osc = ctx.createOscillator();
+    const env = ctx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq(midi);
+    const end = Math.max(t1 - 0.03, t0 + 0.04); // a small gap re-articulates repeated notes
+    env.gain.setValueAtTime(0, t0);
+    env.gain.linearRampToValueAtTime(level, t0 + 0.01);
+    env.gain.setTargetAtTime(level * 0.6, t0 + 0.01, 0.2);
+    env.gain.setTargetAtTime(0, end, 0.02);
+    osc.connect(env).connect(out);
+    osc.start(t0);
+    osc.stop(end + 0.2);
+  }
+
+  function light(i, on) {
+    if (digits[i]) digits[i].classList.toggle('playing', on);
+  }
+
+  function stop() {
+    if (!run) return;
+    const { master, frame, lit } = run;
+    master.gain.setTargetAtTime(0, ctx.currentTime, 0.02);
+    setTimeout(() => master.disconnect(), 200);
+    cancelAnimationFrame(frame);
+    lit.forEach((i) => light(i, false));
+    run = null;
+    btn.textContent = '▶';
+    btn.setAttribute('aria-label', 'Play');
+  }
+
+  function play(from) {
+    stop();
+    if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+    ctx.resume();
+    const s = settings();
+    const spb = 60 / s.tempo;
+    const t0 = ctx.currentTime + 0.08;
+    const at = (beat) => t0 + (beat - from) * spb;
+    const master = ctx.createGain();
+    master.connect(ctx.destination);
+
+    // With the melody off the notes are still highlighted, to sing along to.
+    for (const n of s.melody ? score.notes : []) {
+      if (n.t + n.d <= from + 1e-6) continue;
+      const start = Math.max(n.t, from);
+      const end = n.t + n.d;
+      if (n.trill === undefined) {
+        voice(master, s.root + n.p, at(start), at(end), 'triangle', 0.3);
+      } else {
+        const step = Math.max(0.07, spb / 8);
+        let k = 0;
+        for (let x = at(start); x < at(end) - 0.02; x += step, k++) {
+          voice(master, s.root + (k % 2 ? n.trill : n.p), x, Math.min(x + step + 0.03, at(end)), 'triangle', 0.3);
+        }
+      }
+    }
+    if (s.chords) {
+      for (const c of score.chords) {
+        if (c.t + c.d <= from + 1e-6) continue;
+        // Chord roots sit between a 4th and an octave-and-a-half below degree 1.
+        // They're a little louder when they play alone.
+        const base = s.root - 12 + c.root - (c.root >= 6 ? 12 : 0);
+        for (const tone of c.tones) {
+          voice(master, base + tone, at(Math.max(c.t, from)), at(c.t + c.d), 'sine', s.melody ? 0.07 : 0.1);
+        }
+      }
+    }
+
+    run = { master, t0, from, spb, frame: 0, lit: new Set() };
+    btn.textContent = '■';
+    btn.setAttribute('aria-label', 'Stop');
+    const self = run;
+    const tick = () => {
+      if (run !== self) return;
+      const beat = from + (ctx.currentTime - t0) / spb;
+      if (beat >= score.length) return stop();
+      score.marks.forEach((m, i) => {
+        const on = beat >= m.t && beat < m.t + m.d;
+        if (on === run.lit.has(i)) return;
+        light(i, on);
+        if (on) {
+          run.lit.add(i);
+          const box = digits[i] && digits[i].getBoundingClientRect();
+          if (box && (box.top < 0 || box.bottom > innerHeight - 90)) {
+            digits[i].scrollIntoView({ block: 'center', behavior: 'smooth' });
+          }
+        } else {
+          run.lit.delete(i);
+        }
+      });
+      run.frame = requestAnimationFrame(tick);
+    };
+    run.frame = requestAnimationFrame(tick);
+  }
+
+  const position = () => (run ? run.from + Math.max(0, (ctx.currentTime - run.t0) / run.spb) : 0);
+
+  btn.addEventListener('click', () => (run ? stop() : play(0)));
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest && e.target.closest('.digit[data-i]');
+    if (el) play(score.marks[+el.dataset.i].t);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.code !== 'Space' || e.target.closest('input, select, button, textarea')) return;
+    e.preventDefault();
+    run ? stop() : play(0);
+  });
+  // Changing a setting while playing carries on from the same place.
+  [keySel, octSel, tempoIn, melodyBox, chordsBox].forEach((el) => {
+    if (!el) return;
+    el.addEventListener('change', () => {
+      save();
+      if (run) play(position());
+    });
+  });
+})({"length":32,"notes":[{"t":0,"d":1,"p":0},{"t":1,"d":1,"p":-1},{"t":2,"d":0.5,"p":-3},{"t":2.5,"d":1,"p":-5},{"t":3.5,"d":2,"p":-7},{"t":5.5,"d":0.5,"p":-5},{"t":6,"d":1,"p":-3},{"t":7,"d":1,"p":0},{"t":8,"d":1.5,"p":-1},{"t":9.5,"d":0.5,"p":-3},{"t":10,"d":1,"p":-5},{"t":11,"d":0.5,"p":-7},{"t":11.5,"d":4.5,"p":-8},{"t":16,"d":1.5,"p":-3},{"t":17.5,"d":0.5,"p":-5},{"t":18,"d":1,"p":-7},{"t":19,"d":0.5,"p":-8},{"t":19.5,"d":1,"p":-10},{"t":20.5,"d":1.5,"p":-8},{"t":22,"d":1,"p":-7},{"t":23,"d":1,"p":-3},{"t":24,"d":1.5,"p":-4},{"t":25.5,"d":0.5,"p":-7},{"t":26,"d":1,"p":-8},{"t":27,"d":0.5,"p":-10},{"t":27.5,"d":4.5,"p":-12}],"marks":[{"t":0,"d":1},{"t":1,"d":1},{"t":2,"d":0.5},{"t":2.5,"d":1},{"t":3.5,"d":0.5},{"t":4,"d":1.5},{"t":5.5,"d":0.5},{"t":6,"d":1},{"t":7,"d":1},{"t":8,"d":1.5},{"t":9.5,"d":0.5},{"t":10,"d":1},{"t":11,"d":0.5},{"t":11.5,"d":0.5},{"t":12,"d":4},{"t":16,"d":1.5},{"t":17.5,"d":0.5},{"t":18,"d":1},{"t":19,"d":0.5},{"t":19.5,"d":0.5},{"t":20,"d":0.5},{"t":20.5,"d":1.5},{"t":22,"d":1},{"t":23,"d":1},{"t":24,"d":1.5},{"t":25.5,"d":0.5},{"t":26,"d":1},{"t":27,"d":0.5},{"t":27.5,"d":0.5},{"t":28,"d":4}],"chords":[{"t":0,"d":4,"root":9,"tones":[0,3,7]},{"t":4,"d":4,"root":2,"tones":[0,3,7]},{"t":8,"d":4,"root":7,"tones":[0,4,7,10]},{"t":12,"d":4,"root":0,"tones":[0,4,7]},{"t":16,"d":4,"root":5,"tones":[0,4,7]},{"t":20,"d":4,"root":11,"tones":[0,3,6]},{"t":24,"d":4,"root":4,"tones":[0,4,7,10]},{"t":28,"d":4,"root":9,"tones":[0,3,7]}]}, {"root":60,"tempo":100});</script>
 </body>
 </html>

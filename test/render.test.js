@@ -68,3 +68,19 @@ test('theme: toggle button, theme colors, light print', () => {
   assert.match(html, /\.theme-toggle \{ display: none; \}/); // hidden when printing
   assert.doesNotMatch(html, /#222" stroke-linecap/); // SVG ink comes from the theme
 });
+
+test('player: controls, numbered notes, valid embedded script', () => {
+  const html = renderPage({ melodyText: '| 1 2 |', chordsText: '| 6- |', root: 57, tempo: 90 });
+  assert.match(html, /<div class="player"/);
+  assert.match(html, /<option value="9" selected>A<\/option>/);
+  assert.match(html, /<option value="3" selected>3<\/option>/);
+  assert.match(html, /name="tempo" [^>]*value="90"/);
+  assert.match(html, /name="melody"/);
+  assert.match(html, /name="chords"/);
+  assert.equal(count(html, /class="digit" [^>]*data-i="/g), 2);
+  const script = html.match(/<script>(\(function player[\s\S]*?)<\/script>/)[1];
+  assert.doesNotThrow(() => new Function(script));
+  const noChords = renderPage({ melodyText: '| 1 |' });
+  assert.doesNotMatch(noChords, /name="(melody|chords)"/);
+  assert.doesNotThrow(() => new Function(noChords.match(/<script>(\(function player[\s\S]*?)<\/script>/)[1]));
+});

@@ -274,7 +274,23 @@ external files, and is meant to be printed.
   system setting until the button is used, and then remembers the choice.
   Printing always uses the light theme, and the button isn't printed.
 
-### 4.3 Drawing
+### 4.3 Player
+
+On screen, a player bar at the bottom of the page plays the melody (and,
+optionally, the chords) with Web Audio. It is not printed.
+
+- Degree 1 is set by a key and an octave (default C4, or `--root`), and the
+  tempo is in beats per minute (default 100, or `--tempo`). Degrees are
+  counted in the major scale.
+- Holds and ties lengthen a note instead of playing it again. A trill
+  alternates with the next scale degree up.
+- Each chord plays its triad, plus a 7th for `D`, `M`, `ø`, dim-7 and any
+  symbol containing `7`. It lasts until the next chord or the end of its bar.
+- The note being played is highlighted. Clicking a note plays from there.
+- When there is a chords file, checkboxes turn the melody and the chords on
+  or off. With the melody off, its notes are still highlighted.
+
+### 4.4 Drawing
 
 The output follows the style of the hand-written reference chart.
 
@@ -302,7 +318,7 @@ The output follows the style of the hand-written reference chart.
 - **Chords:** drawn in grey below each bar, at their beat positions (§3.3).
   A line with no chords at all has no chord row.
 
-### 4.4 Pitch contour
+### 4.5 Pitch contour
 
 Pitch is shown **only** by vertical position. There are no octave dots.
 
