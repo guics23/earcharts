@@ -140,7 +140,10 @@ group:
 - Consecutive eighth- and 16th-length elements in a group share a beam.
   Consecutive 16ths also share a second beam.
 - Rests and holds can be part of a beam group (`4'-'3'`).
-- A quarter-length element inside a group is drawn normally and breaks the beam.
+- A group can mix in quarter-length elements, which is handy for syncopated
+  figures: `-'14'` (eighth rest, quarter, eighth) or `5·5'`. The beam spans
+  the whole group, and a quarter's stem stops just short of the beam so it
+  still reads as a quarter. A group made only of quarters gets no beam.
 - Whitespace always ends a beam group. To keep a beam through a direction
   change, attach the accent to the note: `4'´1'`.
 - A tie mark doesn't break a beam group (`4'3'_` is still one group).
@@ -302,7 +305,9 @@ The output follows the style of the hand-written reference chart.
 - **Rhythm marks** go above each digit:
   - A quarter note has a plain vertical stem.
   - An eighth has a stem with one flag, and a 16th has two flags.
-  - Beamed notes have their stems joined by one beam per flag level.
+  - Beamed notes have their stems joined by one beam per flag level. A
+    quarter inside a beamed group keeps a small gap between its stem and the
+    beam.
 - **Dots:** a dotted length is shown as a dot after the digit.
 - **Ties:** an arc below the two digits. A tie crossing a line break is drawn
   as two half-arcs.

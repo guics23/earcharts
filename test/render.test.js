@@ -41,6 +41,8 @@ test('beams, flags, stems', () => {
   assert.equal(count(svg('6"5"4"3"'), /<rect /g), 2); // two beams
   assert.equal(count(svg("6·'5\""), /<rect /g), 2); // beam + 16th stub
   assert.equal(count(svg("4' 3'"), /<rect /g), 0); // separated: flags, no beam
+  assert.equal(count(svg("-'14'"), /<rect /g), 1); // mixed group: one beam over the quarter
+  assert.equal(count(svg('12'), /<rect /g), 0); // quarters only: no beam
 });
 
 test('empty input still renders a page', () => {
