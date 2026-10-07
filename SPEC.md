@@ -147,6 +147,9 @@ group:
 - Whitespace always ends a beam group. To keep a beam through a direction
   change, attach the accent to the note: `4'´1'`.
 - A tie mark doesn't break a beam group (`4'3'_` is still one group).
+- A comma separates elements in the text without breaking the beam group, so
+  digits don't run together: `-'1,4'` is the same as `-'14'` but doesn't read
+  as "14". It is drawn as nothing.
 
 No beat counting is involved. What you group is what gets beamed.
 
@@ -199,6 +202,7 @@ alternations that would otherwise need finer subdivisions.
 | `-` `-'` `-"` | Quarter, eighth, 16th rest |
 | `=` `='` `="` | Hold previous note for a quarter, eighth, 16th |
 | `4'3'` (no space) | Beamed |
+| `,` | Separator inside a beam group; drawn as nothing |
 | `( … )` | Triplet |
 | `_` (any spacing, repeats collapse) | Tie (same pitch only) |
 | `~` | Trill |

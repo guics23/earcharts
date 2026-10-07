@@ -91,6 +91,13 @@ test('beaming: attached accents and ties keep the group, barlines break it', () 
   assert.notEqual(ev[3].group, ev[4].group);
 });
 
+test('beaming: a comma separates without breaking the group', () => {
+  const ev = events("-'1,4' 2");
+  assert.deepEqual(ev.map((e) => e.duration), [0.5, 1, 0.5, 1]);
+  assert.equal(ev[0].group, ev[2].group);
+  assert.notEqual(ev[2].group, ev[3].group);
+});
+
 test('ties: all spacing variants', () => {
   for (const t of ['4_ 4', '4 _4', '4 __ 4', '4_|4', '4 _|_ 4', '4_ | _4']) {
     const [a, b] = events(t);
