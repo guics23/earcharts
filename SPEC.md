@@ -99,6 +99,8 @@ Example: `` 1 7 6 ´ 3 `` → 1, down to 7, down to 6, then up a 5th to 3.
 | `5·'` or `5'·` | Dotted eighth |
 | `5·"` or `5"·` | Dotted 16th |
 
+A plain `.` works as the dot too (`5.` = `5·`).
+
 Half and whole notes don't exist. Use holds (§2.6) or rests (§2.5). If a note
 has both `'` and `"`, only the last one counts.
 

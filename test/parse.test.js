@@ -56,6 +56,10 @@ test('direction: carries across barlines and lines', () => {
   assert.deepEqual(positions('| 1 7 |\n| 6 5 |'), [0, -1, -2, -3]);
 });
 
+test('lengths: "." is an alias for "·"', () => {
+  assert.deepEqual(events("5. 5.' 5'. -.").map((e) => e.duration), events("5· 5·' 5'· -·").map((e) => e.duration));
+});
+
 test('lengths: quarter, eighth, 16th, dotted', () => {
   const d = events('5 5\' 5" 5· 5·\' 5\'· 5"·').map((e) => e.duration);
   assert.deepEqual(d, [1, 0.5, 0.25, 1.5, 0.75, 0.75, 0.375]);
