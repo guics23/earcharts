@@ -47,6 +47,8 @@ Title - Author
   adds extra space above the next line, which is handy for showing the form
   (A B A). Several blank lines in a row count as one section break, and blank
   lines before the first music line are ignored.
+- A bar can hold any length, since nothing is counted. A pickup is just a
+  short bar: write `| -'5' |`, not `| - - - -'5' |`.
 - Spaces and tabs only matter for beaming (§2.7) and for attaching direction
   accents (§2.3). Otherwise they can be used freely.
 
@@ -304,7 +306,11 @@ optionally, the chords) with Web Audio. It is not printed.
 The output follows the style of the hand-written reference chart.
 
 - **Lines:** one line of music per line of the melody file. Bars on the same
-  line get equal width, with barlines drawn between them.
+  line get equal width, with barlines drawn between them. A line with fewer
+  than four bars keeps the bar width of a four-bar line and doesn't fill the
+  page. A bar shorter than four beats (like a pickup) is drawn narrower, in
+  proportion to its length but always wide enough for its notes, so the
+  line ends before the right margin.
 - **Sections:** a line that starts a section (§2.1) gets extra space above it.
 - **Notes:** each note is drawn as its digit, with the accidental in front
   (`♯5`, `♭7`).
